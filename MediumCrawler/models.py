@@ -10,12 +10,8 @@ class Blog(models.Model):
     blog_title = models.TextField()
     blog_published_on = models.DateField()
     blog_modified_on = models.DateField()
-    blog_accessed_on = models.DateTimeField(default = timezone.now)
     blog_read_duration = models.CharField(max_length = 20)
     blog_tags = models.ManyToManyField(BlogTag)
-
-    class Meta:
-        ordering = ['-blog_accessed_on']
 
 class AccessedTag(models.Model):
     tag_name = models.CharField(max_length = 100, primary_key = True)

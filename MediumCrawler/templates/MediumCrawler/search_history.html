@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+    <header>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/MediumCrawler.css' %}" />
+        <meta charset="utf-8">
+        <h1>MediumCrawler</h1>
+    </header>
+    <body>
+        <div id="main">
+            <table class="table table-bordered" style="color: white;">
+                <tr>
+                    <td>Tag Name</td>
+                    <td>Last Accessed On</td>
+                    <td>Details</td>
+                </tr>
+                {% for tag in accessed_tags.all %}
+                    <tr>
+                        <td>{{ tag.tag_name }}</td>
+                        <td>{{ tag.tag_accessed_on }}</td>
+                        <td>
+                            <a href = "{% url 'tag_page' pk=tag.tag_name %}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i> Details
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <footer><h4>Made by Anmol Deep</h4></footer>
+    </body>

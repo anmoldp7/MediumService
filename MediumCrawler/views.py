@@ -32,11 +32,18 @@ def home_page(request):
                         current_blog.blog_tags.add(current_blog_tag)
                     current_tag.blogs.add(current_blog)
 
-            return redirect("home_page")
+            return redirect("tag/" + current_tag.tag_name)
         else:
             return redirect("home_page")
     context["form"] = tag_search_form
-    return render(request, 'MediumCrawler/home_page.html', context)
+    return render(request, "MediumCrawler/home_page.html", context)
 
-# def tag_page(request):
-#     context = {}
+def tag_page(request, pk):
+    context = {}
+    context["tag_data"] = AccessedTag.objects.get(tag_name = pk)
+    return render(request, "MediumCrawler/tag_page.html", context)
+
+def search_history(request):
+    context = {}
+    context["accessed_tags"] = AccessedTag.objects.all()
+    return render(request, "MediumCrawler/search_history.html", context)
