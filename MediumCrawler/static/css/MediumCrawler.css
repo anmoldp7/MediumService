@@ -1,39 +1,26 @@
-* {
-    box-sizing: border-box; 
+.container{
+    width: 80%;
+    margin: 0 auto;
 }
 
-body {
-    margin: 0;
-}
-
-#main {
-    display: flex;
-    min-height: calc(100vh - 20vh);
-}
-
-#main > article {
-    flex: 1;
-}
-
-header, footer, article{
-    padding: 1em;
-}
-
-header, footer {
-    background: rgb(100, 0, 255);
-    height: 10vh;
-    color: white;
-}
-
-#main {
+header, footer{
+    width: 100%;
+    position: fixed;        
     background: black;
     color: white;
 }
 
-footer {
-    text-align: right;
+header{
+    top: 0;
+    padding: 10px;
 }
 
-.handle-form {
-    color: black;
+footer{
+    bottom: 0;
+    padding: 20px;
+}
+
+body{        
+    padding-top: 100px;
+    padding-bottom: 40px;
 }

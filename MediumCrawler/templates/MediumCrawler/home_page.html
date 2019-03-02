@@ -1,24 +1,21 @@
-{% load static %}
-<html>
-    <header>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{% static 'css/MediumCrawler.css' %}" />
-        <meta charset="utf-8">
-        <h1>Medium Crawler</h1>
-    </header>
-    <body>
-        <div id="main">
-            <form method="POST" action="{% url 'home_page' %}">
-            {% csrf_token %}
-                <article>
-                    <p>Add Tags: </p> 
-                    {{ form.tag_name }}
-                </article>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button>
-            </form>
-        </div>
-        <footer><h4>Made by Anmol Deep</h4></footer>
-    </body>
-</html>
+{% extends "MediumCrawler/base.html" %}
+{% block content %}
+    <div id="main">
+        <form method="POST" action="{% url 'home_page' %}">
+        {% csrf_token %}
+            <article>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Search for tags: </p> 
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.tag_name }}
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button>
+                    </div>
+                </div>
+            </article>
+        </form>
+    </div>
+{% endblock %}

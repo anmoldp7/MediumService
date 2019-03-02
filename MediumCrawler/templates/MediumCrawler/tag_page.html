@@ -1,53 +1,45 @@
-{% load static %}
-<html>
-    <header>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{% static 'css/MediumCrawler.css' %}" />
-        <meta charset="utf-8">
-        <h1>Search : {{ tag_data.tag_name }}</h1>
-    </header>
-    <body>
-        <div id="main">
-            <table class="table table-bordered" style="color: white;">
+{% extends "MediumCrawler/base.html" %}
+{% block content %}
+    <div id="main">
+    {% if tag_data.blogs.count > 0 %}
+        <table class="table table-bordered">
+            <tr>
+                <th>Blog Title</th>
+                <th>Blog Author</th>
+                <th>Published On</th>
+                <th>Modified On</th>
+                <th>Time For Reading</th>
+                <th>Link</th>
+                <th>Tags</th>
+            </tr>
+            {% for blog in tag_data.blogs.all %}
                 <tr>
-                    <td>Blog Title</td>
-                    <td>Blog Author</td>
-                    <td>Published On</td>
-                    <td>Modified On</td>
-                    <td>Time For Reading</td>
-                    <td>Tags</td>
-                    <td>Link</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>{{ blog.blog_title }}</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>{{ blog.blog_author }}</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>{{ blog.blog_published_on }}</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>{{ blog.blog_modified_on }}</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>{{ blog.blog_read_duration }}</td>
+                    <td rowspan =  {{ blog.blog_tags.count|add:"1" }}>
+                        <a href =  {{ blog.blog_url }}>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> Details
+                            </button>
+                        </a>
+                    </td>
                 </tr>
-                {% for blog in tag_data.blogs.all %}
+                {% for tag in blog.blog_tags.all %}
                     <tr>
-                        <td>{{ blog.blog_title }}</td>
-                        <td>{{ blog.blog_author }}</td>
-                        <td>{{ blog.blog_published_on }}</td>
-                        <td>{{ blog.blog_modified_on }}</td>
-                        <td>{{ blog.blog_read_duration }}</td>
                         <td>
-                            <table class="table-bordered" style="color: white;">
-                                {% for tag in blog.blog_tags.all %}
-                                    <tr>
-                                        <td>
-                                        {{ tag.tag_name }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </td> 
-                        <td>
-                            <a href = {{ blog.blog_url }}>
-                                <button type="button" class="btn btn-primary">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i> Details
-                                </button>
+                            <a href="{% url 'tag_page' pk=tag.tag_name %}">
+                                {{ tag.tag_name }}
                             </a>
                         </td>
                     </tr>
                 {% endfor %}
-            </table>
-        </div>
-        <footer><h4>Made by Anmol Deep</h4></footer>
-    </body>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No blogs found.</p>
+    {% endif %}
+    </div>
+{% endblock %}
