@@ -5,14 +5,14 @@
         {% csrf_token %}
             <article>
                 <div class="row">
-                    <div class="col-md-4">
-                        <p>Search for tags: </p> 
+                    <div class="col-md-2">
+                        <h4 style="line-height: 10px;">Search for tags: </h4> 
                     </div>
                     <div class="col-md-4">
                         {{ form.tag_name }}
                     </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary" style="line-height: 10px;"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button>
                     </div>
                 </div>
             </article>

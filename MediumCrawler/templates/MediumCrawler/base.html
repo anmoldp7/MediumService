@@ -6,7 +6,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'css/MediumCrawler.css' %}" />
         <meta charset="utf-8">
-        <h1>Medium Crawler</h1>
+        <div class="panel-heading">
+            <div class="btn-group pull-right">
+                <a href="{% url 'home_page' %}" class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                <a href="{% url 'search_history' %}" class="btn btn-danger"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+            </div>
+            <h3>Medium Crawler</h3>
+        </div>
     </header>
     <body>
         <div class="container-fluid">
