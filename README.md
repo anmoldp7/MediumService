@@ -1,0 +1,2 @@
+# Medium Crawler
+[Medium](https://medium.com/) is an online publishing platform and an example of social journalism containing a hybrid collection of amateur and professional publications/publishers. This application takes Medium tag as an input, scrapes relevant data, stores it in SQLite database and also stores and displays search history. For demo - [youtube](https://www.youtube.com/watch?v=wsqWloG0hk0&feature=youtu.be).
